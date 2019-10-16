@@ -6,6 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 import test_firebase
+import time
 
 options = webdriver.ChromeOptions()
 options.add_argument('headless')
@@ -15,6 +16,7 @@ options.add_argument("disable-gpu")
 driver = webdriver.Chrome('chromedriver', chrome_options=options)
 
 while(True):
+    time.sleep(60*10)
     keywords = test_firebase.db.collection(u'keywords').where(u'flag', u'==', 0).stream()
 
     for keyword in keywords:

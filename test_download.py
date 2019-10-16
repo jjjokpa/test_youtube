@@ -1,11 +1,11 @@
 import os
 import subprocess
- 
 import pytube
-
 import test_firebase
+import time
 
 while(True):
+    time.sleep(60*10)
     docs = test_firebase.db.collection(u'links').where(u'flag', u'==', 0).stream()
 
     for doc in docs:
@@ -31,8 +31,8 @@ while(True):
         
         parent_dir = "/home/dongsuk/Downloads" #save path
         vids[vnum].download(parent_dir) #start download
+        time.sleep(60*5)
         test_firebase.db.collection("links").document(id_doc).update({"flag": 1})
-
     
 
 #print('Complete!!')
